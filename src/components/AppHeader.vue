@@ -17,10 +17,30 @@ export default {
 
 <template>
     <header>
-        <label for="search"></label>
-        <input v-model="store.searchText" type="text" id="search">
-        <button @click="$emit('searchContents')">Cerca</button>
+        <div class="container d-flex justify-content-between align-items-center">
+            <h1>BOOLFLIX</h1>
+            <div>
+                <input v-model="store.searchText" @keyup.enter="$emit('searchContents')" type="text" placeholder="Cerca un film o una serie" id="search" class="me-3">
+                <button @click="$emit('searchContents')" class="p-1 rounded">Cerca</button>
+            </div>
+        </div>
     </header>
 </template>
 
-<style scoped></style>
+<style lang="scss" scoped>
+header {
+    width: 100%;
+    height: 100px;
+    padding: 20px;
+    background-color: black;
+    color: red;
+
+    h1 {
+        letter-spacing: -2px;
+    }
+
+    button {
+        background-color: rgba(255, 0, 0, 0.8);
+    }
+}
+</style>
