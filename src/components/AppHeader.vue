@@ -19,9 +19,9 @@ export default {
     <header>
         <div class="container d-flex justify-content-between align-items-center">
             <h1>BOOLFLIX</h1>
-            <div>
+            <div class="d-flex align-items-center">
                 <input v-model="store.searchText" @keyup.enter="$emit('searchContents')" type="text" placeholder="Cerca un film o una serie" id="search" class="me-3">
-                <button @click="$emit('searchContents')" class="p-1 rounded">Cerca</button>
+                <button type="button" class="btn btn-primary btn-sm" @click="$emit('searchContents')">Cerca</button>
             </div>
         </div>
     </header>
