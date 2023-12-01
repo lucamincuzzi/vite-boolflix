@@ -11,6 +11,9 @@ export default {
         getImgPath(lang) {
             return new URL(`../assets/img/${lang}-flag.png`, import.meta.url).href;
         },
+        getPosterURL(partialURL) {
+            return `https://image.tmdb.org/t/p/w342/${partialURL}`
+        },
         hasFlag(media) {
             return this.flags.includes(media.original_language);
         },
@@ -26,6 +29,7 @@ export default {
     <div v-else>
         <!-- Lista film -->
         <div v-for="movie in store.movies" :key="movie.id">
+            <img class="poster" :src="getPosterURL(movie.poster_path)" alt="">
             <h4>{{ movie.title }}</h4>
             <p>{{ movie.original_title }}</p>
             <img class="lang" v-if="hasFlag(movie)" :src="getImgPath(movie.original_language)" alt="">
@@ -35,6 +39,7 @@ export default {
         <!-- /Lista film -->
         <!-- Lista serie TV -->
         <div v-for="tvShow in store.tvShows" :key="tvShow.id">
+            <img class="poster" :src="getPosterURL(tvShow.poster_path)" alt="">
             <h4>{{ tvShow.name }}</h4>
             <p>{{ tvShow.original_name }}</p>
             <img class="lang" v-if="hasFlag(tvShow)" :src="getImgPath(tvShow.original_language)" alt="">
@@ -46,11 +51,11 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+
+img.poster {
+    max-width: 150px;
+}
 img.lang {
     max-width: 80px;
-}
-
-hr {
-    margin: 50px 0;
 }
 </style>
