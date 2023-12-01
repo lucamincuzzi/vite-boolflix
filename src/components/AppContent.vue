@@ -12,7 +12,10 @@ export default {
             return new URL(`../assets/img/${lang}-flag.png`, import.meta.url).href;
         },
         getPosterURL(partialURL) {
-            return `https://image.tmdb.org/t/p/w342/${partialURL}`
+            return `https://image.tmdb.org/t/p/w342/${partialURL}`;
+        },
+        getRating(averageRating) {
+            return Math.floor(averageRating / 2);
         },
         hasFlag(media) {
             return this.flags.includes(media.original_language);
@@ -34,7 +37,7 @@ export default {
             <p>{{ movie.original_title }}</p>
             <img class="lang" v-if="hasFlag(movie)" :src="getImgPath(movie.original_language)" alt="">
             <p v-else>{{ movie.original_language }}</p>
-            <p>{{ movie.vote_average }}</p>
+            <p>{{ getRating(movie.vote_average) }}</p>
         </div>
         <!-- /Lista film -->
         <!-- Lista serie TV -->
@@ -44,7 +47,7 @@ export default {
             <p>{{ tvShow.original_name }}</p>
             <img class="lang" v-if="hasFlag(tvShow)" :src="getImgPath(tvShow.original_language)" alt="">
             <p v-else>{{ tvShow.original_language }}</p>
-            <p>{{ tvShow.vote_average }}</p>
+            <p>{{ getRating(tvShow.vote_average) }}</p>
         </div>
         <!-- /Lista serie TV -->
     </div>
