@@ -23,9 +23,17 @@ export default {
             .get(`${this.store.baseApiUrl}/search/movie`, { params })
             .then((resp) => {
                 this.store.movies = resp.data.results;
-                this.store.loading = false
-                console.log(this.store.movies);
+                this.store.loading = false;
+                console.log("Array film:", this.store.movies);
             });
+            //Chiamata per serie TV
+            axios
+            .get(`${this.store.baseApiUrl}/search/tv`, { params })
+            .then((resp) => {
+                this.store.tvShows = resp.data.results;
+                this.store.loading = false;
+                console.log("Array serie TV:", this.store.tvShows);
+            })
         }
     }
 }
